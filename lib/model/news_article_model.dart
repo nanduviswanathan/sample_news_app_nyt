@@ -135,23 +135,23 @@ class Result {
 
 enum ItemType {
   ARTICLE,
-  INTERACTIVE
+  INTERACTIVE,
+  PROMO
 }
 
 final itemTypeValues = EnumValues({
   "Article": ItemType.ARTICLE,
-  "Interactive": ItemType.INTERACTIVE
+  "Interactive": ItemType.INTERACTIVE,
+  "Promo": ItemType.PROMO
 });
 
 enum Kicker {
   EMPTY,
-  KICKER_SYRIA_DISPATCH,
   SYRIA_DISPATCH
 }
 
 final kickerValues = EnumValues({
   "": Kicker.EMPTY,
-  "Syria dispatch": Kicker.KICKER_SYRIA_DISPATCH,
   "Syria Dispatch": Kicker.SYRIA_DISPATCH
 });
 
@@ -229,11 +229,13 @@ final typeValues = EnumValues({
 
 enum Section {
   BRIEFING,
+  EMPTY,
   WORLD
 }
 
 final sectionValues = EnumValues({
   "briefing": Section.BRIEFING,
+  "": Section.EMPTY,
   "world": Section.WORLD
 });
 

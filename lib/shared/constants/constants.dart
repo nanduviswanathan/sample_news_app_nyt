@@ -27,6 +27,8 @@ class Constants {
   static const String noText = 'No';
   static const String yesText = 'Yes';
 
+  static const String noInternetConnectionText = 'No internet Connection';
+
   static const String accountCreatedSucessfullyText =
       'Account created successfully!';
   static const collectionName = 'users';

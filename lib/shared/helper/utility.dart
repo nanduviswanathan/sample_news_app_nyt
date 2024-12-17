@@ -1,4 +1,5 @@
 //This class serves as the Utility class for the App.
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../constants/constants.dart';
@@ -52,6 +53,16 @@ class Utility {
   // get api from env
   static String getNewsApi() {
     return dotenv.env[Constants.newsAPiKey]!;
+  }
+
+  // check internet connectivity
+  Future<bool> isInternetConnected() async {
+    final List<ConnectivityResult> connectivityResult =
+        await (Connectivity().checkConnectivity());
+    if (connectivityResult.contains(ConnectivityResult.none)) {
+      return false;
+    }
+    return true;
   }
 }
 

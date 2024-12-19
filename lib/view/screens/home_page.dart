@@ -88,9 +88,9 @@ class HomePage extends StatelessWidget {
                   ),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: newsList.results.length,
+                      itemCount: newsList.results?.length ?? 0,
                       itemBuilder: (context, index) {
-                        final news = newsList.results[index];
+                        final news = newsList.results?[index];
                         return
                             // MyCardWidget();
                             Column(
@@ -124,7 +124,7 @@ class BreakingNews {
 }
 
 class BreakingNewsTile extends StatelessWidget {
-  final Result news;
+  final Result? news;
 
   const BreakingNewsTile({super.key, required this.news});
 
@@ -155,7 +155,7 @@ class BreakingNewsTile extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10),
                   child: Text(
-                    news.title,
+                    news?.title ?? "",
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -164,7 +164,7 @@ class BreakingNewsTile extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  news.resultAbstract,
+                  news?.resultAbstract ?? "",
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
@@ -183,7 +183,7 @@ class BreakingNewsTile extends StatelessWidget {
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: CachedNetworkImage(
-                  imageUrl: news.multimedia[0].url,
+                  imageUrl: news?.multimedia?[0].url != null ? news!.multimedia![0].url! : "",
                   width: 120,
                   height: 120,
                   fit: BoxFit.cover,

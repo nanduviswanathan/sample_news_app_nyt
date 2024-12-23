@@ -45,7 +45,7 @@ class NewsArticleModel {
 }
 
 class Result {
-  String? section;
+  Section? section;
   String? subsection;
   String? title;
   String? resultAbstract;
@@ -88,7 +88,7 @@ class Result {
   });
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
-    section: json["section"],
+    section: sectionValues.map[json["section"]]!,
     subsection: json["subsection"],
     title: json["title"],
     resultAbstract: json["abstract"],
@@ -110,7 +110,7 @@ class Result {
   );
 
   Map<String, dynamic> toJson() => {
-    "section": section,
+    "section": sectionValues.reverse[section],
     "subsection": subsection,
     "title": title,
     "abstract": resultAbstract,
@@ -143,17 +143,15 @@ final itemTypeValues = EnumValues({
 });
 
 enum Kicker {
-  EMPTY,
-  GLOBAL_HEALTH,
-  KICKER_NEWS_ANALYSIS,
-  NEWS_ANALYSIS
+  BUYING_TIME,
+  COSTA_RICA_DISPATCH,
+  EMPTY
 }
 
 final kickerValues = EnumValues({
-  "": Kicker.EMPTY,
-  "Global Health": Kicker.GLOBAL_HEALTH,
-  "News Analysis": Kicker.KICKER_NEWS_ANALYSIS,
-  "news analysis": Kicker.NEWS_ANALYSIS
+  "buying time": Kicker.BUYING_TIME,
+  "Costa Rica Dispatch": Kicker.COSTA_RICA_DISPATCH,
+  "": Kicker.EMPTY
 });
 
 class Multimedia {
@@ -203,15 +201,13 @@ class Multimedia {
 enum Format {
   LARGE_THUMBNAIL,
   SUPER_JUMBO,
-  THREE_BY_TWO_SMALL_AT2_X,
-  WIDE_THUMBNAIL
+  THREE_BY_TWO_SMALL_AT2_X
 }
 
 final formatValues = EnumValues({
   "Large Thumbnail": Format.LARGE_THUMBNAIL,
   "Super Jumbo": Format.SUPER_JUMBO,
-  "threeByTwoSmallAt2X": Format.THREE_BY_TWO_SMALL_AT2_X,
-  "Wide Thumbnail": Format.WIDE_THUMBNAIL
+  "threeByTwoSmallAt2X": Format.THREE_BY_TWO_SMALL_AT2_X
 });
 
 enum Subtype {
@@ -228,6 +224,22 @@ enum Type {
 
 final typeValues = EnumValues({
   "image": Type.IMAGE
+});
+
+enum Section {
+  BRIEFING,
+  CLIMATE,
+  MAGAZINE,
+  US,
+  WORLD
+}
+
+final sectionValues = EnumValues({
+  "briefing": Section.BRIEFING,
+  "climate": Section.CLIMATE,
+  "magazine": Section.MAGAZINE,
+  "us": Section.US,
+  "world": Section.WORLD
 });
 
 class EnumValues<T> {

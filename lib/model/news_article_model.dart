@@ -145,13 +145,17 @@ final itemTypeValues = EnumValues({
 enum Kicker {
   BUYING_TIME,
   COSTA_RICA_DISPATCH,
-  EMPTY
+  EMPTY,
+  GLOBAL_HEALTH,
+  NEWS_ANALYSIS
 }
 
 final kickerValues = EnumValues({
   "buying time": Kicker.BUYING_TIME,
   "Costa Rica Dispatch": Kicker.COSTA_RICA_DISPATCH,
-  "": Kicker.EMPTY
+  "": Kicker.EMPTY,
+  "Global Health": Kicker.GLOBAL_HEALTH,
+  "news analysis": Kicker.NEWS_ANALYSIS
 });
 
 class Multimedia {
@@ -229,7 +233,8 @@ final typeValues = EnumValues({
 enum Section {
   BRIEFING,
   CLIMATE,
-  MAGAZINE,
+  HEALTH,
+  TECHNOLOGY,
   US,
   WORLD
 }
@@ -237,7 +242,8 @@ enum Section {
 final sectionValues = EnumValues({
   "briefing": Section.BRIEFING,
   "climate": Section.CLIMATE,
-  "magazine": Section.MAGAZINE,
+  "health": Section.HEALTH,
+  "technology": Section.TECHNOLOGY,
   "us": Section.US,
   "world": Section.WORLD
 });

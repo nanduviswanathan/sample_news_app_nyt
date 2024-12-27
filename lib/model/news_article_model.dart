@@ -45,7 +45,6 @@ class NewsArticleModel {
 }
 
 class Result {
-  Section? section;
   String? subsection;
   String? title;
   String? resultAbstract;
@@ -57,7 +56,6 @@ class Result {
   DateTime? createdDate;
   DateTime? publishedDate;
   String? materialTypeFacet;
-  Kicker? kicker;
   List<String>? desFacet;
   List<String>? orgFacet;
   List<String>? perFacet;
@@ -66,7 +64,6 @@ class Result {
   String? shortUrl;
 
   Result({
-    this.section,
     this.subsection,
     this.title,
     this.resultAbstract,
@@ -78,7 +75,6 @@ class Result {
     this.createdDate,
     this.publishedDate,
     this.materialTypeFacet,
-    this.kicker,
     this.desFacet,
     this.orgFacet,
     this.perFacet,
@@ -88,19 +84,16 @@ class Result {
   });
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
-    section: sectionValues.map[json["section"]]!,
     subsection: json["subsection"],
     title: json["title"],
     resultAbstract: json["abstract"],
     url: json["url"],
     uri: json["uri"],
     byline: json["byline"],
-    itemType: itemTypeValues.map[json["item_type"]]!,
     updatedDate: json["updated_date"] == null ? null : DateTime.parse(json["updated_date"]),
     createdDate: json["created_date"] == null ? null : DateTime.parse(json["created_date"]),
     publishedDate: json["published_date"] == null ? null : DateTime.parse(json["published_date"]),
     materialTypeFacet: json["material_type_facet"],
-    kicker: kickerValues.map[json["kicker"]]!,
     desFacet: json["des_facet"] == null ? [] : List<String>.from(json["des_facet"]!.map((x) => x)),
     orgFacet: json["org_facet"] == null ? [] : List<String>.from(json["org_facet"]!.map((x) => x)),
     perFacet: json["per_facet"] == null ? [] : List<String>.from(json["per_facet"]!.map((x) => x)),
@@ -110,19 +103,16 @@ class Result {
   );
 
   Map<String, dynamic> toJson() => {
-    "section": sectionValues.reverse[section],
     "subsection": subsection,
     "title": title,
     "abstract": resultAbstract,
     "url": url,
     "uri": uri,
     "byline": byline,
-    "item_type": itemTypeValues.reverse[itemType],
     "updated_date": updatedDate?.toIso8601String(),
     "created_date": createdDate?.toIso8601String(),
     "published_date": publishedDate?.toIso8601String(),
     "material_type_facet": materialTypeFacet,
-    "kicker": kickerValues.reverse[kicker],
     "des_facet": desFacet == null ? [] : List<dynamic>.from(desFacet!.map((x) => x)),
     "org_facet": orgFacet == null ? [] : List<dynamic>.from(orgFacet!.map((x) => x)),
     "per_facet": perFacet == null ? [] : List<dynamic>.from(perFacet!.map((x) => x)),
@@ -137,125 +127,39 @@ enum ItemType {
   INTERACTIVE
 }
 
-final itemTypeValues = EnumValues({
-  "Article": ItemType.ARTICLE,
-  "Interactive": ItemType.INTERACTIVE
-});
 
-enum Kicker {
-  BUYING_TIME,
-  COSTA_RICA_DISPATCH,
-  EMPTY,
-  GLOBAL_HEALTH,
-  NEWS_ANALYSIS
-}
-
-final kickerValues = EnumValues({
-  "buying time": Kicker.BUYING_TIME,
-  "Costa Rica Dispatch": Kicker.COSTA_RICA_DISPATCH,
-  "": Kicker.EMPTY,
-  "Global Health": Kicker.GLOBAL_HEALTH,
-  "news analysis": Kicker.NEWS_ANALYSIS
-});
 
 class Multimedia {
   String? url;
-  Format? format;
   int? height;
   int? width;
   Type? type;
-  Subtype? subtype;
   String? caption;
   String? copyright;
 
   Multimedia({
     this.url,
-    this.format,
     this.height,
     this.width,
     this.type,
-    this.subtype,
     this.caption,
     this.copyright,
   });
 
   factory Multimedia.fromJson(Map<String, dynamic> json) => Multimedia(
     url: json["url"],
-    format: formatValues.map[json["format"]]!,
     height: json["height"],
     width: json["width"],
-    type: typeValues.map[json["type"]]!,
-    subtype: subtypeValues.map[json["subtype"]]!,
     caption: json["caption"],
     copyright: json["copyright"],
   );
 
   Map<String, dynamic> toJson() => {
     "url": url,
-    "format": formatValues.reverse[format],
     "height": height,
     "width": width,
-    "type": typeValues.reverse[type],
-    "subtype": subtypeValues.reverse[subtype],
     "caption": caption,
     "copyright": copyright,
   };
 }
 
-enum Format {
-  LARGE_THUMBNAIL,
-  SUPER_JUMBO,
-  THREE_BY_TWO_SMALL_AT2_X
-}
-
-final formatValues = EnumValues({
-  "Large Thumbnail": Format.LARGE_THUMBNAIL,
-  "Super Jumbo": Format.SUPER_JUMBO,
-  "threeByTwoSmallAt2X": Format.THREE_BY_TWO_SMALL_AT2_X
-});
-
-enum Subtype {
-  PHOTO
-}
-
-final subtypeValues = EnumValues({
-  "photo": Subtype.PHOTO
-});
-
-enum Type {
-  IMAGE
-}
-
-final typeValues = EnumValues({
-  "image": Type.IMAGE
-});
-
-enum Section {
-  BRIEFING,
-  CLIMATE,
-  HEALTH,
-  TECHNOLOGY,
-  US,
-  WORLD
-}
-
-final sectionValues = EnumValues({
-  "briefing": Section.BRIEFING,
-  "climate": Section.CLIMATE,
-  "health": Section.HEALTH,
-  "technology": Section.TECHNOLOGY,
-  "us": Section.US,
-  "world": Section.WORLD
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
-}
